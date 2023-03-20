@@ -62,7 +62,7 @@ def parse_args():
                         help='Number of trees')
     parser.add_argument('--regressor__bootstrap', type=int, default=1,
                         help='Method of selecting samples for training each tree')
-    parser.add_argument('--regressor__max_depth', type=int, default=10,
+    parser.add_argument('--regressor__max_depth', type=int, default=20,
                         help=' Maximum number of levels in tree')
     parser.add_argument('--regressor__max_features', type=str, default='auto',
                         help='Number of features to consider at every split')
