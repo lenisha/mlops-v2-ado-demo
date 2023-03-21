@@ -8,7 +8,7 @@ variables:
 - name: endpoint_type
   value: online
 - name: deployment_name
-  value: taxi-online-dp-$(Build.BuildNumber)
+  value: taxi-online-dp-$(Build.SourceVersion)
 
 # This sets up the optional triggers for the running the pipeline.
 # Note: This pipeline is triggered by a manual trigger.
