@@ -102,6 +102,7 @@ stages:
        
     - job: RunTrainingPipeline
       timeoutInMinutes: 120 # how long to run the job before automatically cancelling
+      dependsOn: [SetupTrainingResources]
       steps:
       - checkout: self
         path: s/
