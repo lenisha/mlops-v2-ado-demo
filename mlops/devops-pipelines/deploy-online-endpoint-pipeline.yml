@@ -27,8 +27,8 @@ pool:
   vmImage: ubuntu-20.04
 
 stages:
-- stage: CreateOnlineEndpoint
-  displayName: Create/Update Online Endpoint
+- stage: CreateDevOnlineEndpoint
+  displayName: Create/Update Dev Online Endpoint
   jobs:
     - job: DeployOnlineEndpoint
       steps:
@@ -100,3 +100,22 @@ stages:
           deployment_name: taxi-online-dp
           sample_request: data/taxi-request.json
           request_type: json
+
+- stage: CreateDevOnlineEndpoint
+  displayName: Create/Update Prod Online Endpoint
+  jobs:
+  - deployment: DeployOnlineEndpoint
+    environment: 'prod'
+    dependsOn: 'CreateDevOnlineEndpoint'
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+            path: s/
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: 'AzureMLDemo'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'echo Deploy to Prod!!'
