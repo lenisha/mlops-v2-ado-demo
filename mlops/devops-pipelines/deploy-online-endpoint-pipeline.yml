@@ -7,8 +7,10 @@ variables:
   value: taxi-online-$(namespace)$(postfix)$(environment)
 - name: endpoint_type
   value: online
+- name: buildid
+  value: $[replace(variables['Build.BuildNumber'], '.', '-')]
 - name: deployment_name
-  value: taxi-online-dp-${{replace(variables['Build.BuildNumber'], '.', '-')}}
+  value: taxi-online-dp-$(buildid)
 
 # This sets up the optional triggers for the running the pipeline.
 # Note: This pipeline is triggered by a manual trigger.
