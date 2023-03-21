@@ -8,7 +8,7 @@ variables:
 - name: endpoint_type
   value: online
 - name: deployment_name
-  value: taxi-online-dp-$(Build.SourceVersion)
+  value: taxi-online-dp-$[replace(variables['Build.BuildNumber'], '.', '-')]
 
 # This sets up the optional triggers for the running the pipeline.
 # Note: This pipeline is triggered by a manual trigger.
@@ -41,6 +41,7 @@ stages:
         #
         #       See the documentation for more information.
         #       https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
+     
       - template: /aml-cli-v2/install-az-cli.yml
 
         # Install the Azure ML CLI
