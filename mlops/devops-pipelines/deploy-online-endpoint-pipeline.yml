@@ -103,10 +103,10 @@ stages:
 
 - stage: CreateProdvOnlineEndpoint
   displayName: Create/Update Prod Online Endpoint
+  dependsOn: 'CreateDevOnlineEndpoint'
   jobs:
   - deployment: DeployOnlineEndpoint
     environment: 'prod'
-    dependsOn: 'CreateDevOnlineEndpoint'
     strategy: 
       runOnce:
         deploy:
