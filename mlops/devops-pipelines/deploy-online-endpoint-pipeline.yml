@@ -101,7 +101,7 @@ stages:
           sample_request: data/taxi-request.json
           request_type: json
 
-- stage: CreateDevOnlineEndpoint
+- stage: CreateProdvOnlineEndpoint
   displayName: Create/Update Prod Online Endpoint
   jobs:
   - deployment: DeployOnlineEndpoint
