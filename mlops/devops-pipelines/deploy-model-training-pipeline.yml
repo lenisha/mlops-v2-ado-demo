@@ -28,7 +28,7 @@ stages:
   displayName: Run Training Pipeline
 
   jobs:
-    - job: DeployDevTrainingPipeline
+    - job: SetupTrainingResources
       timeoutInMinutes: 120 # how long to run the job before automatically cancelling
       steps:
       - checkout: self
@@ -99,7 +99,37 @@ stages:
           data_file: mlops/azureml/train/data.yml
 
           
-        # Run the ML Pipeline
+       
+    - job: RunTrainingPipeline
+      timeoutInMinutes: 120 # how long to run the job before automatically cancelling
+      steps:
+      - checkout: self
+        path: s/
+        # Install the Azure CLI
+        # Note: All pipelines need the ML extension to the Azure CLI. We start with installing the AZ CLI.
+        #
+        #       See the documentation for more information.
+        #       https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
+      - template: /aml-cli-v2/install-az-cli.yml
+
+        # Install the Azure ML CLI
+        # Note: The step uses Azure CLI to install the Azure ML CLI.
+        #
+        #       See the documentation for more information.
+        #       https://learn.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?tabs=public
+      - template: /aml-cli-v2/install-aml-cli.yml
+
+        # Connect to the Azure ML workspace
+        # Note: The step configures the default workspace and resourcse group for the Azure ML CLI.
+        #       Rather than pass the workspace name and resource group name to each command,
+        #       the workspace is set as the default workspace.
+        #       The step uses Azure ML CLI to connect to the workspace.
+        #
+        #       See the documentation for more information.
+        #       https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-environments-v2?tabs=cli#connect-to-the-workspace
+      - template: /mlops/azureml/connect/connect-to-workspace.yml
+
+       # Run the ML Pipeline
         # Note: This step uses Azure ML CLI to run the pipeline.
         #       The step also waits for the pipeline to complete after submitting the pipeline.
         #       This may not be the best practice for production pipelines.
