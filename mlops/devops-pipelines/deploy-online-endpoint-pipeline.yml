@@ -120,7 +120,7 @@ stages:
             path: s/
           - task: AzureCLI@2
             inputs:
-              azureSubscription: 'AzureMLDemo'
+              azureSubscription: $(ado_service_connection_rg)
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: 'echo Deploy to Prod!!'
