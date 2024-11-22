@@ -31,6 +31,6 @@ variables:
   # DO NOT TOUCH
 
   # For pipeline reference
-  resource_group: aml
-  aml_workspace: amlwork
+  resource_group: NTG
+  aml_workspace: mlprompt
 
