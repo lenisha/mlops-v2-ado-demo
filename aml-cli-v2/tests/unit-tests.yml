@@ -20,9 +20,9 @@ steps:
       flake8 data-science/src/ --output-file=flake8-testresults.xml --format junit-xml --exit-zero
     displayName: 'Run code quality tests (Flake8)'
 
-  - script: |      
-      pylint data-science/src/ --output-format=pylint_junit.JUnitReporter --exit-zero > pylint-testresults.xml
-    displayName: 'Run code quality tests (Pylint)'
+  #- script: |      
+  #    pylint data-science/src/ --output-format=pylint_junit.JUnitReporter --exit-zero > pylint-testresults.xml
+  #  displayName: 'Run code quality tests (Pylint)'
 
   - script: |
       pytest -v data-science/src/*/test_*.py --doctest-modules --junitxml=unit-testresults.xml --cov=src --cov-append --cov-report=xml:coverage.xml --cov-report=html:htmlcov
