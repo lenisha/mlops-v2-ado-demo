@@ -5,7 +5,7 @@ steps:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.8'
-      architecture: 'x64'
+      architecture: 'x86'
 
   - script: |
       python -m pip install --upgrade pip
