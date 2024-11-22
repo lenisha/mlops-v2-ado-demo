@@ -27,8 +27,8 @@ trigger:
 #
 #       See the documentation for more information.
 #       https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
-pool:
-  vmImage: ubuntu-20.04
+pool: mlpool
+#  vmImage: ubuntu-20.04
 
 stages:
 - stage: CreateDevOnlineEndpoint
@@ -111,7 +111,7 @@ stages:
   dependsOn: 'CreateDevOnlineEndpoint'
   jobs:
   - deployment: DeployOnlineEndpoint
-    environment: 'prod'
+    environment: 'Prod'
     strategy: 
       runOnce:
         deploy:
