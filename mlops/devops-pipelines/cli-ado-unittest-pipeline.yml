@@ -7,8 +7,8 @@ trigger:
     include:
     - data-science/*
 
-pool:
-  vmImage: ubuntu-20.04
+pool: mlpool
+  #vmImage: ubuntu-20.04
 
 
 stages :
