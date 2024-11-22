@@ -21,7 +21,7 @@ variables:
   ado_service_connection_aml_ws: Azure-ARM-Prod
 
   # Compute target for pipeline
-  training_target: cpu-cluster
+  training_target: compute-cluster
   training_target_sku: STANDARD_D2_V2
   training_target_min_nodes: 0
   training_target_max_nodes: 4
